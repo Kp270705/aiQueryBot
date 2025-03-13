@@ -12,6 +12,9 @@
             --light: #f8f9fa;
             --dark: #212529;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --border-color: #e0e0e0;
+            --section-bg: #f8f9fa;
+            --highlight: #fffde7;
         }
         
         * {
@@ -27,11 +30,12 @@
             padding: 0;
             min-height: 100vh;
             color: var(--dark);
+            line-height: 1.6;
         }
         
         .container {
             width: 90%;
-            max-width: 800px;
+            max-width: 900px;
             margin: 2rem auto;
             padding: 1rem;
         }
@@ -75,14 +79,15 @@
         .response-container {
             background-color: #fff;
             border-radius: 8px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border-color);
             overflow: hidden;
+            margin-bottom: 2rem;
         }
         
         .response-header {
-            background-color: #f8f9fa;
+            background-color: var(--section-bg);
             padding: 0.75rem 1rem;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
         }
@@ -100,19 +105,132 @@
         
         .response-content {
             padding: 1.5rem;
-            max-height: 500px;
+            max-height: 70vh;
             overflow-y: auto;
             line-height: 1.6;
         }
         
-        /* Style for code blocks that might be in the response */
+        /* Markdown-style formatting */
+        .response-content h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .response-content h2:first-child {
+            margin-top: 0;
+        }
+        
+        .response-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem;
+            color: var(--secondary);
+        }
+        
+        .response-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: var(--dark);
+        }
+        
+        .response-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .response-content strong {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .response-content em {
+            font-style: italic;
+            color: #555;
+        }
+        
+        .response-content ul, 
+        .response-content ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            padding-left: 1rem;
+        }
+        
+        .response-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .response-content ul li::marker {
+            color: var(--primary);
+        }
+        
+        .response-content ol li::marker {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .response-content .section {
+            background-color: var(--section-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .response-content .highlight {
+            background-color: var(--highlight);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        
+        .response-content .indented {
+            margin-left: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid #ddd;
+        }
+        
+        .response-content .phase {
+            background-color: rgba(114, 9, 183, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .response-content .phase-title {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .response-content .summary {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .response-content .summary-title {
+            font-weight: 700;
+            color: #1976d2;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Code blocks */
         .response-content pre {
             background-color: #f8f9fa;
             padding: 1rem;
             border-radius: 4px;
             overflow-x: auto;
             margin: 1rem 0;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border-color);
+            font-family: 'Courier New', Courier, monospace;
         }
         
         .response-content code {
@@ -123,22 +241,11 @@
             font-size: 0.9em;
         }
         
-        /* Style for lists in the response */
-        .response-content ul, 
-        .response-content ol {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .response-content p {
-            margin-bottom: 1rem;
-        }
-        
         .actions {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
         
         .btn {
@@ -177,7 +284,7 @@
         }
         
         /* Responsive adjustments */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .container {
                 width: 95%;
                 padding: 0.5rem;
@@ -189,6 +296,10 @@
             
             .aiResponse h1 {
                 font-size: 1.75rem;
+            }
+            
+            .response-content {
+                padding: 1rem;
             }
             
             .actions {
@@ -219,7 +330,7 @@
                     </svg>
                     <h2>AI Response</h2>
                 </div>
-                <div class="response-content">
+                <div class="response-content" id="response-content">
                     {{ data | safe }}
                 </div>
             </div>
@@ -253,36 +364,97 @@
             });
         }
         
-        // Function to handle code blocks and formatting in the response
+        // Function to format the AI response with proper styling
         document.addEventListener('DOMContentLoaded', function() {
-            const responseContent = document.querySelector('.response-content');
-            
-            // Check if the content has code blocks (indicated by ```), and format them
+            const responseContent = document.getElementById('response-content');
             let content = responseContent.innerHTML;
             
-            // Format code blocks
-            if (content.includes('```')) {
-                content = content.replace(/```(\w*)\n([\s\S]*?)\n```/g, '<pre><code>$2</code></pre>');
-                responseContent.innerHTML = content;
+            // Process the content with advanced formatting
+            
+            // 1. Format bold text (both ** and __ style)
+            content = content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            content = content.replace(/__(.*?)__/g, '<strong>$1</strong>');
+            
+            // 2. Format italic text (both * and _ style)
+            content = content.replace(/\*([^\*]+)\*/g, '<em>$1</em>');
+            content = content.replace(/_([^_]+)_/g, '<em>$1</em>');
+            
+            // 3. Format headers (# style)
+            content = content.replace(/\*\*([^:]+):\*\*/g, '<h3>$1</h3>');
+            
+            // 4. Format sections with "Phase" in the title
+            content = content.replace(/\*\*(Phase \d+:[^\*]+)\*\*/g, '<div class="phase"><div class="phase-title">$1</div>');
+            
+            // 5. Format "In Summary" section
+            content = content.replace(/\*\*(In Summary:)\*\*/g, '<div class="summary"><div class="summary-title">$1</div>');
+            
+            // 6. Format bullet points
+            // First, identify bullet point lists
+            content = content.replace(/\* ([^\n]+)(?:\n|$)/g, '<li>$1</li>');
+            
+            // Wrap consecutive list items in ul tags
+            content = content.replace(/(<li>.*?<\/li>)(\s*<li>.*?<\/li>)+/g, '<ul>$&</ul>');
+            
+            // 7. Format numbered lists
+            content = content.replace(/(\d+)\. ([^\n]+)(?:\n|$)/g, '<li>$2</li>');
+            
+            // Wrap consecutive numbered list items in ol tags
+            content = content.replace(/(<li>\d+\. .*?<\/li>)(\s*<li>\d+\. .*?<\/li>)+/g, '<ol>$&</ol>');
+            
+            // 8. Add proper indentation for nested content
+            // Find sections that should be indented (after headers, within lists)
+            const sections = content.split('<h3>');
+            for (let i = 1; i < sections.length; i++) {
+                const headerEnd = sections[i].indexOf('</h3>');
+                if (headerEnd !== -1) {
+                    const afterHeader = sections[i].substring(headerEnd + 5);
+                    // Wrap content after header in an indented div
+                    sections[i] = sections[i].substring(0, headerEnd + 5) + 
+                                 '<div class="indented">' + afterHeader + '</div>';
+                }
+            }
+            content = sections.join('<h3>');
+            
+            // 9. Format code blocks
+            content = content.replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>');
+            
+            // 10. Add paragraph tags for better spacing
+            // Split by double newlines and wrap in p tags
+            content = content.replace(/\n\n([^<\n][^\n]+)/g, '<p>$1</p>');
+            
+            // 11. Close any open divs
+            const openDivs = (content.match(/<div/g) || []).length;
+            const closeDivs = (content.match(/<\/div>/g) || []).length;
+            for (let i = 0; i < openDivs - closeDivs; i++) {
+                content += '</div>';
             }
             
-            // Format lists (simple implementation)
-            if (content.includes('- ')) {
-                content = content.replace(/- (.*?)(?=\n|$)/g, '<li>$1</li>');
-                content = content.replace(/<li>.*?<\/li>(?:\s*<li>.*?<\/li>)+/g, function(match) {
-                    return '<ul>' + match + '</ul>';
-                });
-                responseContent.innerHTML = content;
-            }
+            // Apply the formatted content
+            responseContent.innerHTML = content;
             
-            // Format numbered lists
-            if (/\d+\.\s/.test(content)) {
-                content = content.replace(/\d+\.\s(.*?)(?=\n|$)/g, '<li>$1</li>');
-                content = content.replace(/<li>.*?<\/li>(?:\s*<li>.*?<\/li>)+/g, function(match) {
-                    return '<ol>' + match + '</ol>';
-                });
-                responseContent.innerHTML = content;
-            }
+            // Additional post-processing for nested elements
+            // Find all lists and add proper indentation
+            const lists = responseContent.querySelectorAll('ul, ol');
+            lists.forEach(list => {
+                // If list is inside a phase or section, add indentation
+                if (list.parentElement.classList.contains('phase') || 
+                    list.parentElement.classList.contains('indented')) {
+                    list.style.marginLeft = '1rem';
+                }
+            });
+            
+            // Process headers to create proper hierarchy
+            const headers = responseContent.querySelectorAll('strong');
+            headers.forEach(header => {
+                const text = header.textContent;
+                // Check if this looks like a header (all caps, ends with colon, etc.)
+                if (text.includes(':') || text.toUpperCase() === text) {
+                    // Convert to proper header element
+                    const headerElement = document.createElement('h4');
+                    headerElement.textContent = text;
+                    header.parentNode.replaceChild(headerElement, header);
+                }
+            });
         });
     </script>
 </body>
